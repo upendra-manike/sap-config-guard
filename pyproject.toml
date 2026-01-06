@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sap-config-guard"
+version = "0.1.0"
+description = "Fail-fast configuration validation & environment drift detection for SAP landscapes"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "SAP Community", email = ""}
+]
+maintainers = [
+    {name = "Upendra Manike", email = ""}
+]
+keywords = [
+    "sap",
+    "configuration",
+    "validation",
+    "devops",
+    "ci-cd",
+    "config-management",
+    "environment-drift",
+    "sap-btp",
+    "sap-cpi",
+    "sap-pi",
+    "mulesoft",
+    "cap-apps",
+    "config-validation",
+    "pre-deployment",
+    "fail-fast",
+    "sap-integration",
+    "sap-development",
+    "configuration-management",
+    "environment-comparison",
+    "config-diff"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Information Technology",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Environment :: Plugins",
+]
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "flake8>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/upendra-manike/sap-config-guard"
+Documentation = "https://github.com/upendra-manike/sap-config-guard#readme"
+Repository = "https://github.com/upendra-manike/sap-config-guard"
+Issues = "https://github.com/upendra-manike/sap-config-guard/issues"
+Changelog = "https://github.com/upendra-manike/sap-config-guard/releases"
+"Bug Tracker" = "https://github.com/upendra-manike/sap-config-guard/issues"
+
+[project.scripts]
+sap-config-guard = "sap_config_guard.cli.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sap_config_guard*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+sap_config_guard = ["rules/*.yaml"]
+

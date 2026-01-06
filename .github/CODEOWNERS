@@ -1,0 +1,13 @@
+# Default owners for everything in the repo
+* @upendra-manike
+
+# Core library
+/sap_config_guard/ @upendra-manike
+
+# Documentation
+*.md @upendra-manike
+/docs/ @upendra-manike
+
+# Tests
+/tests/ @upendra-manike
+

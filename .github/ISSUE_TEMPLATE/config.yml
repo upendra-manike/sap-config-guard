@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/upendra-manike/sap-config-guard/discussions
+    about: Ask questions and discuss ideas
+  - name: 📚 Documentation
+    url: https://github.com/upendra-manike/sap-config-guard#readme
+    about: Check the documentation first
+
