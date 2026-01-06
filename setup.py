@@ -17,7 +17,7 @@ setup(
     description="Fail-fast configuration validation & environment drift detection for SAP landscapes",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/sap-config-guard",
+    url="https://github.com/upendra-manike/sap-config-guard",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
