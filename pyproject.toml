@@ -10,10 +10,10 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "SAP Community", email = ""}
+    {name = "SAP Community"}
 ]
 maintainers = [
-    {name = "Upendra Manike", email = ""}
+    {name = "Upendra Manike"}
 ]
 keywords = [
     "sap",
