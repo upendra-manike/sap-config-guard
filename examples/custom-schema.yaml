@@ -1,0 +1,34 @@
+# Custom Schema Example
+# Use this with: sap-config-guard validate ./config --schema ./examples/custom-schema.yaml
+
+required:
+  - SAP_CLIENT
+  - SAP_SYSTEM_ID
+  - SAP_API_URL
+  - SAP_TIMEOUT
+
+secure:
+  - SAP_PASSWORD
+  - SAP_PRIVATE_KEY
+  - SAP_OAUTH_SECRET
+
+patterns:
+  SAP_CLIENT: "^[0-9]{3}$"
+  SAP_API_URL: "^https?://.*"  # Allow both http and https
+  SAP_SYSTEM_ID: "^[A-Z0-9]{3,5}$"  # Allow 3-5 characters
+  SAP_TIMEOUT: "^[0-9]+$"  # Must be numeric
+
+forbidden_in_prod:
+  - localhost
+  - 127.0.0.1
+  - mock
+  - test
+  - debug
+
+min_lengths:
+  SAP_PASSWORD: 12  # Stricter password requirement
+  SAP_PRIVATE_KEY: 32
+
+allowed_values:
+  SAP_ENVIRONMENT: ["dev", "qa", "prod", "staging"]
+

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sap-config-guard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sap-config-guard:latest
+    volumes:
+      # Mount your configs directory
+      - ./examples/config:/app/configs:ro
+      # Mount custom schema if needed
+      - ./sap_config_guard/rules:/app/rules:ro
+    working_dir: /app
+    # Example: validate dev config
+    # command: validate /app/configs/dev
+    # Example: compare environments
+    # command: diff dev=/app/configs/dev qa=/app/configs/qa prod=/app/configs/prod
+    stdin_open: true
+    tty: true
+

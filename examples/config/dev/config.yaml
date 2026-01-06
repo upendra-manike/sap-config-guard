@@ -1,0 +1,11 @@
+# Development Configuration (YAML format)
+sap:
+  client: "100"
+  system_id: "DEV"
+  api:
+    url: "http://localhost:8080"
+    timeout: 30
+  credentials:
+    password: "devpass123"
+    username: "dev_user"
+
