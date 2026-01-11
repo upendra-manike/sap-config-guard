@@ -139,9 +139,7 @@ class ConfigLoader:
                 new_key = f"{parent_key}{sep}{key}" if parent_key else key
                 if isinstance(value, dict):
                     items.extend(
-                        ConfigLoader._flatten_dict(
-                            value, new_key, sep=sep
-                        ).items()
+                        ConfigLoader._flatten_dict(value, new_key, sep=sep).items()
                     )
                 elif isinstance(value, list):
                     # Convert lists to comma-separated strings

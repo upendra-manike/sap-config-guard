@@ -106,16 +106,10 @@ class ConfigValidator:
             results.extend(self._check_production_rules(config))
 
         # Determine if valid
-        has_errors = any(
-            r.level == ValidationLevel.ERROR for r in results
-        )
-        has_warnings = any(
-            r.level == ValidationLevel.WARNING for r in results
-        )
+        has_errors = any(r.level == ValidationLevel.ERROR for r in results)
+        has_warnings = any(r.level == ValidationLevel.WARNING for r in results)
 
-        is_valid = not has_errors and (
-            not fail_on_warning or not has_warnings
-        )
+        is_valid = not has_errors and (not fail_on_warning or not has_warnings)
 
         return results, is_valid
 
@@ -197,9 +191,7 @@ class ConfigValidator:
 
         return results
 
-    def _check_production_rules(
-        self, config: Dict[str, str]
-    ) -> List[ValidationResult]:
+    def _check_production_rules(self, config: Dict[str, str]) -> List[ValidationResult]:
         """Check production-specific rules"""
         results = []
 

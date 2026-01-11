@@ -100,6 +100,4 @@ class ConfigSchema:
         """
         value_lower = str(value).lower()
         forbidden = self.get_forbidden_in_prod()
-        return any(
-            forbidden_item in value_lower for forbidden_item in forbidden
-        )
+        return any(forbidden_item in value_lower for forbidden_item in forbidden)

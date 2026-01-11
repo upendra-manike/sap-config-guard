@@ -37,14 +37,11 @@ def test_pattern_validation():
         )
         # SAP_CLIENT should be 3 digits
 
-        results, is_valid = validator.validate(
-            Path(tmpdir), environment="dev"
-        )
+        results, is_valid = validator.validate(Path(tmpdir), environment="dev")
 
         assert not is_valid
         assert any(
-            "SAP_CLIENT" in str(r) and "pattern" in str(r).lower()
-            for r in results
+            "SAP_CLIENT" in str(r) and "pattern" in str(r).lower() for r in results
         )
 
 
@@ -60,9 +57,7 @@ def test_production_rules():
         )
         # localhost is forbidden in prod
 
-        results, is_valid = validator.validate(
-            Path(tmpdir), environment="prod"
-        )
+        results, is_valid = validator.validate(Path(tmpdir), environment="prod")
 
         assert not is_valid
         assert any(
@@ -85,14 +80,10 @@ def test_valid_config():
             "SAP_PASSWORD=securepass123"
         )
 
-        results, is_valid = validator.validate(
-            Path(tmpdir), environment="dev"
-        )
+        results, is_valid = validator.validate(Path(tmpdir), environment="dev")
 
         # Should be valid (warnings for secure keys are OK in dev)
-        assert is_valid or all(
-            r.level == ValidationLevel.WARNING for r in results
-        )
+        assert is_valid or all(r.level == ValidationLevel.WARNING for r in results)
 
 
 def test_min_length_validation():
@@ -109,12 +100,7 @@ def test_min_length_validation():
             "SAP_PASSWORD=short"  # Less than 8 characters
         )
 
-        results, is_valid = validator.validate(
-            Path(tmpdir), environment="dev"
-        )
+        results, is_valid = validator.validate(Path(tmpdir), environment="dev")
 
         assert not is_valid
-        assert any(
-            "too short" in str(r).lower() or "8" in str(r)
-            for r in results
-        )
+        assert any("too short" in str(r).lower() or "8" in str(r) for r in results)

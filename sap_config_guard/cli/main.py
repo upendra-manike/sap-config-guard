@@ -68,26 +68,20 @@ def diff_command(args):
         # Assume they're in order: dev, qa, prod
         env_names = ["dev", "qa", "prod"][: len(args.environments)]
         env_paths = {
-            name: Path(path)
-            for name, path in zip(env_names, args.environments)
+            name: Path(path) for name, path in zip(env_names, args.environments)
         }
 
     # Validate paths exist
     for env_name, env_path in env_paths.items():
         if not env_path.exists():
-            print(
-                f"❌ Error: Environment path not found: "
-                f"{env_name} -> {env_path}"
-            )
+            print(f"❌ Error: Environment path not found: " f"{env_name} -> {env_path}")
             sys.exit(1)
 
     # Compare environments
     results = EnvironmentDiff.compare_environments(env_paths)
 
     # Format and print
-    output = EnvironmentDiff.format_diff_results(
-        results, show_same=args.show_same
-    )
+    output = EnvironmentDiff.format_diff_results(results, show_same=args.show_same)
     print(output)
 
     # Exit with error if drift detected
@@ -125,17 +119,11 @@ Examples:
         """,
     )
 
-    subparsers = parser.add_subparsers(
-        dest="command", help="Command to execute"
-    )
+    subparsers = parser.add_subparsers(dest="command", help="Command to execute")
 
     # Validate command
-    validate_parser = subparsers.add_parser(
-        "validate", help="Validate configuration"
-    )
-    validate_parser.add_argument(
-        "config_path", help="Path to config file or directory"
-    )
+    validate_parser = subparsers.add_parser("validate", help="Validate configuration")
+    validate_parser.add_argument("config_path", help="Path to config file or directory")
     validate_parser.add_argument("--schema", "-s", help="Path to schema YAML file")
     validate_parser.add_argument(
         "--environment",
