@@ -9,4 +9,3 @@ from sap_config_guard.core.validator import validate
 from sap_config_guard.diff.env_diff import compare_environments
 
 __all__ = ["validate", "compare_environments"]
-

@@ -1,2 +1,1 @@
 """SAP-specific validation rules"""
-
