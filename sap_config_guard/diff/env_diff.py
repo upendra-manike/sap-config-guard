@@ -69,7 +69,9 @@ class EnvironmentDiff:
                         key=key,
                         environments=key_values,
                         status="missing",
-                        message=f"Key '{key}' missing in: {', '.join(missing_in)}",
+                        message=(
+                            f"Key '{key}' missing in: " f"{', '.join(missing_in)}"
+                        ),
                     )
                 )
             # Check if values differ
@@ -132,7 +134,8 @@ def compare_environments(env_paths: Dict[str, str]) -> List[DiffResult]:
     Convenience function to compare environments
 
     Args:
-        env_paths: Dictionary mapping environment names to config paths (strings)
+        env_paths: Dictionary mapping environment names to config paths
+                  (strings)
 
     Returns:
         List of DiffResult objects

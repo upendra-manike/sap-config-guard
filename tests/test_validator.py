@@ -53,7 +53,7 @@ def test_production_rules():
     with TemporaryDirectory() as tmpdir:
         config_file = Path(tmpdir) / "config.env"
         config_file.write_text(
-            "SAP_CLIENT=100\nSAP_SYSTEM_ID=ABC\nSAP_API_URL=http://localhost:8080"
+            "SAP_CLIENT=100\nSAP_SYSTEM_ID=ABC\n" "SAP_API_URL=http://localhost:8080"
         )
         # localhost is forbidden in prod
 

@@ -27,15 +27,16 @@ class ValidationResult:
         self.message = message
 
     def __str__(self) -> str:
-        icon = (
-            "❌"
-            if self.level == ValidationLevel.ERROR
-            else "⚠️" if self.level == ValidationLevel.WARNING else "ℹ️"
-        )
+        if self.level == ValidationLevel.ERROR:
+            icon = "❌"
+        elif self.level == ValidationLevel.WARNING:
+            icon = "⚠️"
+        else:
+            icon = "ℹ️"
         return f"{icon} {self.message}"
 
     def __repr__(self) -> str:
-        return f"ValidationResult({self.level.value}, {self.key}, {self.message})"
+        return f"ValidationResult({self.level.value}, " f"{self.key}, {self.message})"
 
 
 class ConfigValidator:
@@ -122,7 +123,9 @@ class ConfigValidator:
             if key not in config or not config[key]:
                 results.append(
                     ValidationResult(
-                        ValidationLevel.ERROR, key, f"Missing required key: {key}"
+                        ValidationLevel.ERROR,
+                        key,
+                        f"Missing required key: {key}",
                     )
                 )
 
