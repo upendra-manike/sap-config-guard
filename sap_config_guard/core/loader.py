@@ -2,11 +2,10 @@
 Configuration file loader supporting multiple formats
 """
 
-import os
 import json
 import yaml
 from pathlib import Path
-from typing import Dict, Optional, Any
+from typing import Dict, Any
 
 
 class ConfigLoader:
@@ -49,7 +48,9 @@ class ConfigLoader:
 
     @staticmethod
     def _load_directory(dir_path: Path) -> Dict[str, str]:
-        """Load configuration from directory (all .env, .properties, .yaml, .json files)"""
+        """Load configuration from directory
+        (all .env, .properties, .yaml, .json files)
+        """
         config = {}
 
         # Common config file names
@@ -138,7 +139,9 @@ class ConfigLoader:
                 new_key = f"{parent_key}{sep}{key}" if parent_key else key
                 if isinstance(value, dict):
                     items.extend(
-                        ConfigLoader._flatten_dict(value, new_key, sep=sep).items()
+                        ConfigLoader._flatten_dict(
+                            value, new_key, sep=sep
+                        ).items()
                     )
                 elif isinstance(value, list):
                     # Convert lists to comma-separated strings

@@ -42,7 +42,9 @@ class ConfigValidator:
     """Validate SAP configuration against schema"""
 
     def __init__(
-        self, schema: Optional[ConfigSchema] = None, schema_path: Optional[Path] = None
+        self,
+        schema: Optional[ConfigSchema] = None,
+        schema_path: Optional[Path] = None,
     ):
         """
         Initialize validator
@@ -57,7 +59,10 @@ class ConfigValidator:
             self.schema = ConfigSchema(schema_path)
 
     def validate(
-        self, config_path: Path, environment: str = "dev", fail_on_warning: bool = False
+        self,
+        config_path: Path,
+        environment: str = "dev",
+        fail_on_warning: bool = False,
     ) -> Tuple[List[ValidationResult], bool]:
         """
         Validate configuration file or directory
@@ -101,10 +106,16 @@ class ConfigValidator:
             results.extend(self._check_production_rules(config))
 
         # Determine if valid
-        has_errors = any(r.level == ValidationLevel.ERROR for r in results)
-        has_warnings = any(r.level == ValidationLevel.WARNING for r in results)
+        has_errors = any(
+            r.level == ValidationLevel.ERROR for r in results
+        )
+        has_warnings = any(
+            r.level == ValidationLevel.WARNING for r in results
+        )
 
-        is_valid = not has_errors and (not fail_on_warning or not has_warnings)
+        is_valid = not has_errors and (
+            not fail_on_warning or not has_warnings
+        )
 
         return results, is_valid
 
@@ -136,7 +147,8 @@ class ConfigValidator:
                         ValidationResult(
                             ValidationLevel.ERROR,
                             key,
-                            f"Invalid pattern: {key} = {value} (expected pattern: {pattern})",
+                            f"Invalid pattern: {key} = {value} "
+                            f"(expected pattern: {pattern})",
                         )
                     )
 
@@ -178,16 +190,18 @@ class ConfigValidator:
                     ValidationResult(
                         ValidationLevel.ERROR,
                         key,
-                        f"Value too short: {key} must be at least {min_length} characters",
+                        f"Value too short: {key} must be at least "
+                        f"{min_length} characters",
                     )
                 )
 
         return results
 
-    def _check_production_rules(self, config: Dict[str, str]) -> List[ValidationResult]:
+    def _check_production_rules(
+        self, config: Dict[str, str]
+    ) -> List[ValidationResult]:
         """Check production-specific rules"""
         results = []
-        forbidden = self.schema.get_forbidden_in_prod()
 
         for key, value in config.items():
             if self.schema.is_forbidden_in_prod(value):
@@ -195,7 +209,8 @@ class ConfigValidator:
                     ValidationResult(
                         ValidationLevel.ERROR,
                         key,
-                        f"Production violation: {key} contains forbidden value (found in: {value})",
+                        f"Production violation: {key} contains "
+                        f"forbidden value (found in: {value})",
                     )
                 )
 

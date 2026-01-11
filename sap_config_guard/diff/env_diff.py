@@ -3,7 +3,7 @@ Environment diff and drift detection
 """
 
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Set
 from dataclasses import dataclass
 
 from sap_config_guard.core.loader import ConfigLoader
@@ -29,7 +29,8 @@ class EnvironmentDiff:
 
         Args:
             env_paths: Dictionary mapping environment names to config paths
-                      e.g., {'dev': Path('./config/dev'), 'qa': Path('./config/qa')}
+                      e.g., {'dev': Path('./config/dev'),
+                             'qa': Path('./config/qa')}
 
         Returns:
             List of DiffResult objects
@@ -73,7 +74,9 @@ class EnvironmentDiff:
                 )
             # Check if values differ
             elif len(set(key_values.values())) > 1:
-                value_str = ", ".join(f"{env}={val}" for env, val in key_values.items())
+                value_str = ", ".join(
+                    f"{env}={val}" for env, val in key_values.items()
+                )
                 results.append(
                     DiffResult(
                         key=key,
@@ -94,13 +97,16 @@ class EnvironmentDiff:
         return results
 
     @staticmethod
-    def format_diff_results(results: List[DiffResult], show_same: bool = False) -> str:
+    def format_diff_results(
+        results: List[DiffResult], show_same: bool = False
+    ) -> str:
         """
         Format diff results for display
 
         Args:
             results: List of DiffResult objects
-            show_same: Whether to show keys that are the same across environments
+            show_same: Whether to show keys that are the same across
+                      environments
 
         Returns:
             Formatted string

@@ -1,5 +1,6 @@
 """
-sap-config-guard: Fail-fast configuration validation & environment drift detection for SAP landscapes
+sap-config-guard: Fail-fast configuration validation & environment drift
+detection for SAP landscapes
 """
 
 __version__ = "0.1.0"

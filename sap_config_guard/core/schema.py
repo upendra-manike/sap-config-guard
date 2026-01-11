@@ -39,7 +39,13 @@ class ConfigSchema:
                 "SAP_API_URL": r"^https://.*",
                 "SAP_SYSTEM_ID": r"^[A-Z0-9]{3}$",
             },
-            "forbidden_in_prod": ["mock", "localhost", "127.0.0.1", "test", "dev"],
+            "forbidden_in_prod": [
+                "mock",
+                "localhost",
+                "127.0.0.1",
+                "test",
+                "dev",
+            ],
             "min_lengths": {"SAP_PASSWORD": 8},
             "allowed_values": {},
         }
@@ -94,4 +100,6 @@ class ConfigSchema:
         """
         value_lower = str(value).lower()
         forbidden = self.get_forbidden_in_prod()
-        return any(forbidden_item in value_lower for forbidden_item in forbidden)
+        return any(
+            forbidden_item in value_lower for forbidden_item in forbidden
+        )
